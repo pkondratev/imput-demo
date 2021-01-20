@@ -28,15 +28,16 @@ class VariablesPage extends StatelessWidget {
         ),
         Expanded(
             child: OrientationBuilder(
-          builder: (context, orientation) =>
-              BlocBuilder<VariableCubit, List<Variable>>(
-                  builder: (context, state) => ListView.builder(
-                      itemCount: state.length,
-                      itemBuilder: (context, index) => VariableWidget(
-                            variable: state[index],
-                            orientation: orientation,
-                          ))),
-        ))
+                builder: (context, orientation) =>
+                    BlocBuilder<VariableCubit, List<Variable>>(
+                        builder: (context, state) => ListView(
+                              children: state
+                                  .map((e) => VariableWidget(
+                                        variable: e,
+                                        orientation: orientation,
+                                      ))
+                                  .toList(),
+                            ))))
       ],
     );
   }
